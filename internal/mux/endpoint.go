@@ -13,7 +13,7 @@ import (
 // Endpoint implements net.Conn. It is used to read muxed packets.
 type Endpoint struct {
 	mux    *Mux
-	buffer *packetio.Buffer
+	buffer packetio.Buffer
 }
 
 // Close unregisters the endpoint from the Mux

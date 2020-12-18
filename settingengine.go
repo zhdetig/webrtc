@@ -5,6 +5,8 @@ package webrtc
 import (
 	"time"
 
+	"github.com/pion/transport/packetio"
+
 	"github.com/pion/ice/v2"
 	"github.com/pion/logging"
 	"github.com/pion/transport/vnet"
@@ -54,6 +56,7 @@ type SettingEngine struct {
 	disableSRTCPReplayProtection              bool
 	vnet                                      *vnet.Net
 	LoggerFactory                             logging.LoggerFactory
+	BufferFactory                             func() packetio.Buffer
 	iceTCPMux                                 ice.TCPMux
 	iceProxyDialer                            proxy.Dialer
 }
