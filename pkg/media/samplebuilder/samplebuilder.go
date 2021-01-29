@@ -81,7 +81,7 @@ const secondToNanoseconds = 1000000000
 // We have a valid collection of RTP Packets
 // walk forwards building a sample if everything looks good clear and update buffer+values
 func (s *SampleBuilder) buildSample(firstBuffer uint16) (*media.Sample, uint32) {
-	data := []byte{}
+	payloadBuffer := []byte{}
 
 	for i := firstBuffer; s.buffer[i] != nil; i++ {
 		if s.buffer[i].Timestamp != s.buffer[firstBuffer].Timestamp {
@@ -104,15 +104,15 @@ func (s *SampleBuilder) buildSample(firstBuffer uint16) (*media.Sample, uint32) 
 				s.releasePacket(j)
 			}
 
+			data, err := s.depacketizer.Unmarshal(payloadBuffer)
+			if err != nil {
+				return nil, 0
+			}
+
 			return &media.Sample{Data: data, Duration: time.Duration((float64(samples)/float64(s.sampleRate))*secondToNanoseconds) * time.Nanosecond}, s.lastPopTimestamp
 		}
 
-		p, err := s.depacketizer.Unmarshal(s.buffer[i].Payload)
-		if err != nil {
-			return nil, 0
-		}
-
-		data = append(data, p...)
+		payloadBuffer = append(payloadBuffer, s.buffer[i].Payload...)
 	}
 	return nil, 0
 }
