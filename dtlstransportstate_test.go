@@ -11,7 +11,7 @@ func TestNewDTLSTransportState(t *testing.T) {
 		stateString   string
 		expectedState DTLSTransportState
 	}{
-		{unknownStr, DTLSTransportState(Unknown)},
+		{unknownStr, DTLSTransportStateUnknown},
 		{"new", DTLSTransportStateNew},
 		{"connecting", DTLSTransportStateConnecting},
 		{"connected", DTLSTransportStateConnected},
@@ -33,7 +33,7 @@ func TestDTLSTransportState_String(t *testing.T) {
 		state          DTLSTransportState
 		expectedString string
 	}{
-		{DTLSTransportState(Unknown), unknownStr},
+		{DTLSTransportStateUnknown, unknownStr},
 		{DTLSTransportStateNew, "new"},
 		{DTLSTransportStateConnecting, "connecting"},
 		{DTLSTransportStateConnected, "connected"},

@@ -32,6 +32,9 @@ const (
 	// PeerConnectionStateClosed indicates the peer connection is closed
 	// and the isClosed member variable of PeerConnection is true.
 	PeerConnectionStateClosed
+
+	// PeerConnectionStateUnknown is a placeholder for error processing
+	PeerConnectionStateUnknown
 )
 
 // This is done this way because of a linter.
@@ -59,7 +62,7 @@ func newPeerConnectionState(raw string) PeerConnectionState {
 	case peerConnectionStateClosedStr:
 		return PeerConnectionStateClosed
 	default:
-		return PeerConnectionState(Unknown)
+		return PeerConnectionStateUnknown
 	}
 }
 

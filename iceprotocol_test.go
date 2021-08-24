@@ -12,7 +12,7 @@ func TestNewICEProtocol(t *testing.T) {
 		shouldFail    bool
 		expectedProto ICEProtocol
 	}{
-		{unknownStr, true, ICEProtocol(Unknown)},
+		{unknownStr, true, ICEProtocolUnknown},
 		{"udp", false, ICEProtocolUDP},
 		{"tcp", false, ICEProtocolTCP},
 		{"UDP", false, ICEProtocolUDP},
@@ -37,7 +37,7 @@ func TestICEProtocol_String(t *testing.T) {
 		proto          ICEProtocol
 		expectedString string
 	}{
-		{ICEProtocol(Unknown), unknownStr},
+		{ICEProtocolUnknown, unknownStr},
 		{ICEProtocolUDP, "udp"},
 		{ICEProtocolTCP, "tcp"},
 	}

@@ -11,7 +11,7 @@ func TestNewSCTPTransportState(t *testing.T) {
 		transportStateString   string
 		expectedTransportState SCTPTransportState
 	}{
-		{unknownStr, SCTPTransportState(Unknown)},
+		{unknownStr, SCTPTransportStateUnknown},
 		{"connecting", SCTPTransportStateConnecting},
 		{"connected", SCTPTransportStateConnected},
 		{"closed", SCTPTransportStateClosed},
@@ -31,7 +31,7 @@ func TestSCTPTransportState_String(t *testing.T) {
 		transportState SCTPTransportState
 		expectedString string
 	}{
-		{SCTPTransportState(Unknown), unknownStr},
+		{SCTPTransportStateUnknown, unknownStr},
 		{SCTPTransportStateConnecting, "connecting"},
 		{SCTPTransportStateConnected, "connected"},
 		{SCTPTransportStateClosed, "closed"},

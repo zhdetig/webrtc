@@ -22,6 +22,9 @@ const (
 	// ICEGathererStateClosed indicates the closed state can only be entered
 	// when the ICEGatherer has been closed intentionally by calling close().
 	ICEGathererStateClosed
+
+	// ICEGathererStateUnknown defines a state that doesn't match any defined state
+	ICEGathererStateUnknown
 )
 
 func (s ICEGathererState) String() string {

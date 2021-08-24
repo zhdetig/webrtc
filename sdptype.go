@@ -31,6 +31,9 @@ const (
 	// local or remote SDP descriptions in the previous stable state could be
 	// null if there has not yet been a successful offer-answer negotiation.
 	SDPTypeRollback
+
+	// SDPTypeUnknown is a placeholder for error processing
+	SDPTypeUnknown
 )
 
 // This is done this way because of a linter.
@@ -53,7 +56,7 @@ func NewSDPType(raw string) SDPType {
 	case sdpTypeRollbackStr:
 		return SDPTypeRollback
 	default:
-		return SDPType(Unknown)
+		return SDPTypeUnknown
 	}
 }
 

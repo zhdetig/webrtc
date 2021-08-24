@@ -18,6 +18,9 @@ const (
 	// ICETransportPolicyRelay indicates only media relay candidates such
 	// as candidates passing through a TURN server are used.
 	ICETransportPolicyRelay
+
+	// ICETransportPolicyUnknown is a placeholder for error processing
+	ICETransportPolicyUnknown
 )
 
 // This is done this way because of a linter.
@@ -34,7 +37,7 @@ func NewICETransportPolicy(raw string) ICETransportPolicy {
 	case iceTransportPolicyAllStr:
 		return ICETransportPolicyAll
 	default:
-		return ICETransportPolicy(Unknown)
+		return ICETransportPolicyUnknown
 	}
 }
 

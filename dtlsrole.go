@@ -18,6 +18,9 @@ const (
 
 	// DTLSRoleServer defines the DTLS server role.
 	DTLSRoleServer
+
+	// DTLSRoleUnknown defines a state that doesn't match any defined state
+	DTLSRoleUnknown
 )
 
 const (

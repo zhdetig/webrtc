@@ -14,6 +14,9 @@ const (
 	// ICERoleControlled indicates that an ICE agent that waits for the
 	// controlling agent to select the final choice of candidate pairs.
 	ICERoleControlled
+
+	// ICERoleUnknown is a placeholder for error processing
+	ICERoleUnknown
 )
 
 // This is done this way because of a linter.
@@ -29,7 +32,7 @@ func newICERole(raw string) ICERole {
 	case iceRoleControlledStr:
 		return ICERoleControlled
 	default:
-		return ICERole(Unknown)
+		return ICERoleUnknown
 	}
 }
 

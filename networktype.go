@@ -30,6 +30,9 @@ const (
 
 	// NetworkTypeTCP6 indicates TCP over IPv6.
 	NetworkTypeTCP6
+
+	// NetworkTypeUnknown is a placeholder for error processing
+	NetworkTypeUnknown
 )
 
 // This is done this way because of a linter.
@@ -84,7 +87,7 @@ func NewNetworkType(raw string) (NetworkType, error) {
 	case networkTypeTCP6Str:
 		return NetworkTypeTCP6, nil
 	default:
-		return NetworkType(Unknown), fmt.Errorf("%w: %s", errNetworkTypeUnknown, raw)
+		return NetworkTypeUnknown, fmt.Errorf("%w: %s", errNetworkTypeUnknown, raw)
 	}
 }
 
@@ -99,6 +102,6 @@ func getNetworkType(iceNetworkType ice.NetworkType) (NetworkType, error) {
 	case ice.NetworkTypeTCP6:
 		return NetworkTypeTCP6, nil
 	default:
-		return NetworkType(Unknown), fmt.Errorf("%w: %s", errNetworkTypeUnknown, iceNetworkType.String())
+		return NetworkTypeUnknown, fmt.Errorf("%w: %s", errNetworkTypeUnknown, iceNetworkType.String())
 	}
 }

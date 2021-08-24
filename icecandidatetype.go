@@ -35,6 +35,9 @@ const (
 	// described in https://tools.ietf.org/html/rfc8445#section-5.1.1.2. A
 	// candidate type obtained from a relay server, such as a TURN server.
 	ICECandidateTypeRelay
+
+	// ICECandidateTypeUnknown is a placeholder for error processing
+	ICECandidateTypeUnknown
 )
 
 // This is done this way because of a linter.
@@ -57,7 +60,7 @@ func NewICECandidateType(raw string) (ICECandidateType, error) {
 	case iceCandidateTypeRelayStr:
 		return ICECandidateTypeRelay, nil
 	default:
-		return ICECandidateType(Unknown), fmt.Errorf("%w: %s", errICECandidateTypeUnknown, raw)
+		return ICECandidateTypeUnknown, fmt.Errorf("%w: %s", errICECandidateTypeUnknown, raw)
 	}
 }
 
@@ -89,6 +92,6 @@ func getCandidateType(candidateType ice.CandidateType) (ICECandidateType, error)
 	default:
 		// NOTE: this should never happen[tm]
 		err := fmt.Errorf("%w: %s", errICEInvalidConvertCandidateType, candidateType.String())
-		return ICECandidateType(Unknown), err
+		return ICECandidateTypeUnknown, err
 	}
 }

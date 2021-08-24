@@ -11,6 +11,11 @@ import (
 type BundlePolicy int
 
 const (
+
+	// BundlePolicyUnknown is a place holder for a pre-modified bundle policy
+	// (the code takes for granted that this is equal to iota)
+	BundlePolicyUnknown BundlePolicy = iota
+
 	// BundlePolicyBalanced indicates to gather ICE candidates for each
 	// media type in use (audio, video, and data). If the remote endpoint is
 	// not bundle-aware, negotiate only one audio and video track on separate
@@ -44,7 +49,7 @@ func newBundlePolicy(raw string) BundlePolicy {
 	case bundlePolicyMaxBundleStr:
 		return BundlePolicyMaxBundle
 	default:
-		return BundlePolicy(Unknown)
+		return BundlePolicyUnknown
 	}
 }
 

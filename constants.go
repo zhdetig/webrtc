@@ -3,9 +3,6 @@ package webrtc
 import "github.com/pion/dtls/v2"
 
 const (
-	// Unknown defines default public constant to use for "enum" like struct
-	// comparisons when no value was defined.
-	Unknown    = iota
 	unknownStr = "unknown"
 
 	// Equal to UDP MTU

@@ -11,7 +11,7 @@ func TestNewRTCPMuxPolicy(t *testing.T) {
 		policyString   string
 		expectedPolicy RTCPMuxPolicy
 	}{
-		{unknownStr, RTCPMuxPolicy(Unknown)},
+		{unknownStr, RTCPMuxPolicyUnknown},
 		{"negotiate", RTCPMuxPolicyNegotiate},
 		{"require", RTCPMuxPolicyRequire},
 	}
@@ -30,7 +30,7 @@ func TestRTCPMuxPolicy_String(t *testing.T) {
 		policy         RTCPMuxPolicy
 		expectedString string
 	}{
-		{RTCPMuxPolicy(Unknown), unknownStr},
+		{RTCPMuxPolicyUnknown, unknownStr},
 		{RTCPMuxPolicyNegotiate, "negotiate"},
 		{RTCPMuxPolicyRequire, "require"},
 	}

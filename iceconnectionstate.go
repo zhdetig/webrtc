@@ -37,6 +37,9 @@ const (
 	// ICEConnectionStateClosed indicates that the PeerConnection's
 	// isClosed is true.
 	ICEConnectionStateClosed
+
+	// ICEConnectionStateUnknown is a placeholder for error processing
+	ICEConnectionStateUnknown
 )
 
 // This is done this way because of a linter.
@@ -68,7 +71,7 @@ func NewICEConnectionState(raw string) ICEConnectionState {
 	case iceConnectionStateClosedStr:
 		return ICEConnectionStateClosed
 	default:
-		return ICEConnectionState(Unknown)
+		return ICEConnectionStateUnknown
 	}
 }
 

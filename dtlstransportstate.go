@@ -25,6 +25,9 @@ const (
 	// the result of an error (such as receipt of an error alert or failure to
 	// validate the remote fingerprint).
 	DTLSTransportStateFailed
+
+	// DTLSTransportStateUnknown is a placeholder for error processing
+	DTLSTransportStateUnknown
 )
 
 // This is done this way because of a linter.
@@ -49,7 +52,7 @@ func newDTLSTransportState(raw string) DTLSTransportState {
 	case dtlsTransportStateFailedStr:
 		return DTLSTransportStateFailed
 	default:
-		return DTLSTransportState(Unknown)
+		return DTLSTransportStateUnknown
 	}
 }
 

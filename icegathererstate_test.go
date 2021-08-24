@@ -11,7 +11,7 @@ func TestICEGathererState_String(t *testing.T) {
 		state          ICEGathererState
 		expectedString string
 	}{
-		{ICEGathererState(Unknown), unknownStr},
+		{ICEGathererStateUnknown, unknownStr},
 		{ICEGathererStateNew, "new"},
 		{ICEGathererStateGathering, "gathering"},
 		{ICEGathererStateComplete, "complete"},

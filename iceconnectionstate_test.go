@@ -11,7 +11,7 @@ func TestNewICEConnectionState(t *testing.T) {
 		stateString   string
 		expectedState ICEConnectionState
 	}{
-		{unknownStr, ICEConnectionState(Unknown)},
+		{unknownStr, ICEConnectionStateUnknown},
 		{"new", ICEConnectionStateNew},
 		{"checking", ICEConnectionStateChecking},
 		{"connected", ICEConnectionStateConnected},
@@ -35,7 +35,7 @@ func TestICEConnectionState_String(t *testing.T) {
 		state          ICEConnectionState
 		expectedString string
 	}{
-		{ICEConnectionState(Unknown), unknownStr},
+		{ICEConnectionStateUnknown, unknownStr},
 		{ICEConnectionStateNew, "new"},
 		{ICEConnectionStateChecking, "checking"},
 		{ICEConnectionStateConnected, "connected"},

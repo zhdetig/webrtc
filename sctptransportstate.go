@@ -18,6 +18,9 @@ const (
 	// such as by closing the peer connection or applying a remote description
 	// that rejects data or changes the SCTP port.
 	SCTPTransportStateClosed
+
+	// SCTPTransportStateUnknown is a placeholder for error processing
+	SCTPTransportStateUnknown
 )
 
 // This is done this way because of a linter.
@@ -36,7 +39,7 @@ func newSCTPTransportState(raw string) SCTPTransportState {
 	case sctpTransportStateClosedStr:
 		return SCTPTransportStateClosed
 	default:
-		return SCTPTransportState(Unknown)
+		return SCTPTransportStateUnknown
 	}
 }
 

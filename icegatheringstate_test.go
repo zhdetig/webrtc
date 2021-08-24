@@ -11,7 +11,7 @@ func TestNewICEGatheringState(t *testing.T) {
 		stateString   string
 		expectedState ICEGatheringState
 	}{
-		{unknownStr, ICEGatheringState(Unknown)},
+		{unknownStr, ICEGatheringStateUnknown},
 		{"new", ICEGatheringStateNew},
 		{"gathering", ICEGatheringStateGathering},
 		{"complete", ICEGatheringStateComplete},
@@ -31,7 +31,7 @@ func TestICEGatheringState_String(t *testing.T) {
 		state          ICEGatheringState
 		expectedString string
 	}{
-		{ICEGatheringState(Unknown), unknownStr},
+		{ICEGatheringStateUnknown, unknownStr},
 		{ICEGatheringStateNew, "new"},
 		{ICEGatheringStateGathering, "gathering"},
 		{ICEGatheringStateComplete, "complete"},

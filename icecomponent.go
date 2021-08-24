@@ -16,6 +16,9 @@ const (
 	// defined by https://tools.ietf.org/html/rfc5245#section-4.1.1.1. This
 	// represents the component-id value 2 when encoded in candidate-attribute.
 	ICEComponentRTCP
+
+	// ICEComponentUnknown is a placeholder for error processing
+	ICEComponentUnknown
 )
 
 // This is done this way because of a linter.
@@ -31,7 +34,7 @@ func newICEComponent(raw string) ICEComponent {
 	case iceComponentRTCPStr:
 		return ICEComponentRTCP
 	default:
-		return ICEComponent(Unknown)
+		return ICEComponentUnknown
 	}
 }
 

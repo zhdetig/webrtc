@@ -12,7 +12,7 @@ func TestICETransportState_String(t *testing.T) {
 		state          ICETransportState
 		expectedString string
 	}{
-		{ICETransportState(Unknown), unknownStr},
+		{ICETransportStateUnknown, unknownStr},
 		{ICETransportStateNew, "new"},
 		{ICETransportStateChecking, "checking"},
 		{ICETransportStateConnected, "connected"},
@@ -36,7 +36,7 @@ func TestICETransportState_Convert(t *testing.T) {
 		native ICETransportState
 		ice    ice.ConnectionState
 	}{
-		{ICETransportState(Unknown), ice.ConnectionState(Unknown)},
+		{ICETransportStateUnknown, ice.ConnectionStateUnknown},
 		{ICETransportStateNew, ice.ConnectionStateNew},
 		{ICETransportStateChecking, ice.ConnectionStateChecking},
 		{ICETransportStateConnected, ice.ConnectionStateConnected},

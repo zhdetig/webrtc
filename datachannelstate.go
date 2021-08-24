@@ -20,6 +20,9 @@ const (
 	// DataChannelStateClosed indicates that the underlying data transport
 	// has been closed or could not be established.
 	DataChannelStateClosed
+
+	// DataChannelStateUnknown is a placeholder for error processing
+	DataChannelStateUnknown
 )
 
 // This is done this way because of a linter.
@@ -41,7 +44,7 @@ func newDataChannelState(raw string) DataChannelState {
 	case dataChannelStateClosedStr:
 		return DataChannelStateClosed
 	default:
-		return DataChannelState(Unknown)
+		return DataChannelStateUnknown
 	}
 }
 

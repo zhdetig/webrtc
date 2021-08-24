@@ -41,6 +41,9 @@ const (
 	// ICETransportStateClosed indicates the ICETransport has shut down
 	// and is no longer responding to STUN requests.
 	ICETransportStateClosed
+
+	// ICETransportStateUnknown is a placeholder for error processing
+	ICETransportStateUnknown
 )
 
 func (c ICETransportState) String() string {
@@ -81,7 +84,7 @@ func newICETransportStateFromICE(i ice.ConnectionState) ICETransportState {
 	case ice.ConnectionStateClosed:
 		return ICETransportStateClosed
 	default:
-		return ICETransportState(Unknown)
+		return ICETransportStateUnknown
 	}
 }
 
@@ -102,6 +105,6 @@ func (c ICETransportState) toICE() ice.ConnectionState {
 	case ICETransportStateClosed:
 		return ice.ConnectionStateClosed
 	default:
-		return ice.ConnectionState(Unknown)
+		return ice.ConnectionStateUnknown
 	}
 }

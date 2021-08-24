@@ -9,6 +9,11 @@ import (
 type RTCPMuxPolicy int
 
 const (
+
+	// RTCPMuxPolicyUnknown is a place holder for a pre-modified rtp mux policy
+	// (the code takes for granted that this is equal to iota)
+	RTCPMuxPolicyUnknown RTCPMuxPolicy = iota
+
 	// RTCPMuxPolicyNegotiate indicates to gather ICE candidates for both
 	// RTP and RTCP candidates. If the remote-endpoint is capable of
 	// multiplexing RTCP, multiplex RTCP on the RTP candidates. If it is not,
@@ -34,7 +39,7 @@ func newRTCPMuxPolicy(raw string) RTCPMuxPolicy {
 	case rtcpMuxPolicyRequireStr:
 		return RTCPMuxPolicyRequire
 	default:
-		return RTCPMuxPolicy(Unknown)
+		return RTCPMuxPolicyUnknown
 	}
 }
 

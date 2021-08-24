@@ -15,6 +15,9 @@ const (
 
 	// ICEProtocolTCP indicates the URL uses a TCP transport.
 	ICEProtocolTCP
+
+	// ICEProtocolUnknown is a placeholder for error processing
+	ICEProtocolUnknown
 )
 
 // This is done this way because of a linter.
@@ -31,7 +34,7 @@ func NewICEProtocol(raw string) (ICEProtocol, error) {
 	case strings.EqualFold(iceProtocolTCPStr, raw):
 		return ICEProtocolTCP, nil
 	default:
-		return ICEProtocol(Unknown), fmt.Errorf("%w: %s", errICEProtocolUnknown, raw)
+		return ICEProtocolUnknown, fmt.Errorf("%w: %s", errICEProtocolUnknown, raw)
 	}
 }
 

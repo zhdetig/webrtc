@@ -54,6 +54,9 @@ const (
 
 	// SignalingStateClosed indicates The PeerConnection has been closed.
 	SignalingStateClosed
+
+	// SignalingStateUnknown is a placeholder for error processing
+	SignalingStateUnknown
 )
 
 // This is done this way because of a linter.
@@ -81,7 +84,7 @@ func newSignalingState(raw string) SignalingState {
 	case signalingStateClosedStr:
 		return SignalingStateClosed
 	default:
-		return SignalingState(Unknown)
+		return SignalingStateUnknown
 	}
 }
 

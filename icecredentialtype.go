@@ -12,6 +12,9 @@ const (
 	// ICECredentialTypeOauth describes token based credential as described
 	// in https://tools.ietf.org/html/rfc7635.
 	ICECredentialTypeOauth
+
+	// ICECredentialTypeUnknown is a placeholder for error processing
+	ICECredentialTypeUnknown
 )
 
 // This is done this way because of a linter.
@@ -27,7 +30,7 @@ func newICECredentialType(raw string) ICECredentialType {
 	case iceCredentialTypeOauthStr:
 		return ICECredentialTypeOauth
 	default:
-		return ICECredentialType(Unknown)
+		return ICECredentialTypeUnknown
 	}
 }
 

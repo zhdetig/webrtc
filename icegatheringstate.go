@@ -16,6 +16,9 @@ const (
 	// ICEGatheringStateComplete indicates that at least one ICETransport
 	// exists, and all ICETransports are in the "completed" gathering state.
 	ICEGatheringStateComplete
+
+	// ICEGatheringStateUnknown is a placeholder for error processing
+	ICEGatheringStateUnknown
 )
 
 // This is done this way because of a linter.
@@ -35,7 +38,7 @@ func NewICEGatheringState(raw string) ICEGatheringState {
 	case iceGatheringStateCompleteStr:
 		return ICEGatheringStateComplete
 	default:
-		return ICEGatheringState(Unknown)
+		return ICEGatheringStateUnknown
 	}
 }
 

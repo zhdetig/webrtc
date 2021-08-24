@@ -19,6 +19,9 @@ const (
 	// RTPTransceiverDirectionInactive indicates the RTPSender won't offer
 	// to send RTP and RTPReceiver the won't offer to receive RTP.
 	RTPTransceiverDirectionInactive
+
+	// RTPTransceiverDirectionUnknown is a placeholder for error processing
+	RTPTransceiverDirectionUnknown
 )
 
 // This is done this way because of a linter.
@@ -42,7 +45,7 @@ func NewRTPTransceiverDirection(raw string) RTPTransceiverDirection {
 	case rtpTransceiverDirectionInactiveStr:
 		return RTPTransceiverDirectionInactive
 	default:
-		return RTPTransceiverDirection(Unknown)
+		return RTPTransceiverDirectionUnknown
 	}
 }
 

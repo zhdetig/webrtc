@@ -23,6 +23,9 @@ const (
 	// offers and answers, but will respond to a plan-b offer
 	// with a plan-b answer
 	SDPSemanticsUnifiedPlanWithFallback
+
+	// SDPSemanticsUnknown is a placeholder for error processing
+	SDPSemanticsUnknown
 )
 
 const (
@@ -40,7 +43,7 @@ func newSDPSemantics(raw string) SDPSemantics {
 	case sdpSemanticsUnifiedPlanWithFallback:
 		return SDPSemanticsUnifiedPlanWithFallback
 	default:
-		return SDPSemantics(Unknown)
+		return SDPSemanticsUnknown
 	}
 }
 
