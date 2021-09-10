@@ -354,6 +354,9 @@ func (r *SCTPTransport) generateAndSetDataChannelID(dtlsRole DTLSRole, idOut **u
 		if dc.id == nil {
 			continue
 		}
+		if dc.ReadyState() == DataChannelStateClosed {
+			continue
+		}
 
 		idsMap[*dc.id] = struct{}{}
 	}
