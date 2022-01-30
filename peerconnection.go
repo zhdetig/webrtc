@@ -1552,6 +1552,7 @@ func (pc *PeerConnection) undeclaredMediaProcessor() {
 				pc.log.Warnf("Failed to accept RTP %v", err)
 				return
 			}
+			pc.log.Errorf("AcceptStream returned for %d", ssrc)
 
 			if pc.isClosed.get() {
 				if err = stream.Close(); err != nil {
@@ -1570,7 +1571,7 @@ func (pc *PeerConnection) undeclaredMediaProcessor() {
 				pc.dtlsTransport.storeSimulcastStream(stream)
 
 				if err := pc.handleIncomingSSRC(rtpStream, ssrc); err != nil {
-					pc.log.Errorf(incomingUnhandledRTPSsrc, ssrc, err)
+					pc.log.Errorf(incomingUnhandledRTPSsrc, ssrc, atomic.LoadUint64(&simulcastRoutineCount), err)
 				}
 				atomic.AddUint64(&simulcastRoutineCount, ^uint64(0))
 			}(stream, SSRC(ssrc))
