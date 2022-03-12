@@ -25,6 +25,8 @@ type TrackRemote struct {
 	params      RTPParameters
 	rid         string
 
+	rtxStreamInfo chan *interceptor.StreamInfo
+
 	receiver         *RTPReceiver
 	peeked           []byte
 	peekedAttributes interceptor.Attributes
@@ -32,10 +34,11 @@ type TrackRemote struct {
 
 func newTrackRemote(kind RTPCodecType, ssrc SSRC, rid string, receiver *RTPReceiver) *TrackRemote {
 	return &TrackRemote{
-		kind:     kind,
-		ssrc:     ssrc,
-		rid:      rid,
-		receiver: receiver,
+		kind:          kind,
+		ssrc:          ssrc,
+		rid:           rid,
+		rtxStreamInfo: make(chan *interceptor.StreamInfo, 1),
+		receiver:      receiver,
 	}
 }
 
@@ -84,6 +87,10 @@ func (t *TrackRemote) SSRC() SSRC {
 	t.mu.RLock()
 	defer t.mu.RUnlock()
 	return t.ssrc
+}
+
+func (t *TrackRemote) RTXStreamInfo() <-chan *interceptor.StreamInfo {
+	return t.rtxStreamInfo
 }
 
 // Msid gets the Msid of the track

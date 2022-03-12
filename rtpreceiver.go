@@ -391,14 +391,8 @@ func (r *RTPReceiver) receiveForRtx(ssrc SSRC, rsid string, streamInfo *intercep
 	track.repairRtcpReadStream = rtcpReadStream
 	track.repairRtcpInterceptor = rtcpInterceptor
 
-	go func() {
-		b := make([]byte, r.api.settingEngine.getReceiveMTU())
-		for {
-			if _, _, readErr := track.repairInterceptor.Read(b, nil); readErr != nil {
-				return
-			}
-		}
-	}()
+	track.track.rtxStreamInfo <- streamInfo
+
 	return nil
 }
 
